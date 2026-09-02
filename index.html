@@ -78,8 +78,15 @@ th{position:sticky;top:0;z-index:1;background:var(--raised);
 th.l{text-align:left}
 td{padding:11px;border-bottom:1px solid var(--rule);text-align:right;
   font-family:"IBM Plex Mono",ui-monospace,monospace;
-  font-variant-numeric:tabular-nums;white-space:nowrap}
-td.l{text-align:left;font-family:Archivo,ui-sans-serif,sans-serif}
+  font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:top}
+/* Text columns WRAP. Every cell used to inherit nowrap, so a 72-character
+   reason string set the column width and pushed the numbers off the edge -
+   which is the whole reason the board could not be read. */
+td.l{text-align:left;font-family:Archivo,ui-sans-serif,sans-serif;
+  white-space:normal}
+td.verdict{width:210px;min-width:180px}
+td.who{white-space:nowrap}
+table{table-layout:auto}
 tbody tr:last-child td{border-bottom:0}
 tbody tr:hover{background:var(--raised)}
 .chip{display:inline-block;font-family:Archivo,sans-serif;font-size:11.5px;
@@ -87,9 +94,8 @@ tbody tr:hover{background:var(--raised)}
 .chip.good{background:var(--good-soft);color:var(--good)}
 .chip.bad{background:var(--bad-soft);color:var(--bad)}
 .chip.mute{background:var(--raised);color:var(--faint)}
-.why{display:block;margin-top:4px;font-family:Archivo,sans-serif;
-  font-size:11.5px;line-height:1.35;color:var(--faint);white-space:normal;
-  max-width:26ch}
+.why{display:block;margin-top:3px;font-family:Archivo,sans-serif;
+  font-size:11px;line-height:1.3;color:var(--faint);white-space:normal}
 .who{font-weight:600}
 .dim{color:var(--faint)}
 .pos{color:var(--good)}.neg{color:var(--bad)}
@@ -108,7 +114,8 @@ tbody tr:hover{background:var(--raised)}
   color:var(--muted)}
 .proj{font-size:12.5px;color:var(--muted);
   font-family:"IBM Plex Mono",ui-monospace,monospace}
-.units{font-size:12px}
+.uwrap{overflow-x:auto}
+.units{font-size:12px;min-width:300px}
 .units th{position:static;padding:6px 7px;font-size:10px}
 .units td{padding:6px 7px;font-size:12px;white-space:nowrap}
 .barwrap{display:inline-block;width:56px;height:5px;margin-left:7px;
@@ -141,6 +148,6 @@ footer{color:var(--faint);font-size:12.5px;border-top:1px solid var(--rule);
 </style>
 </head>
 <body>
-<div class="wrap"><header><div class="eyebrow">NFL 2026 &middot; Week 1</div><h1>NFL Week 1 Boards</h1><div class="sub">Generated 02 Sep 2026, 17:40 UTC</div></header><section class="verdict"><h2>Two boards, and one finding that applies to both</h2><div class="stats"><div class="stat"><span class="k">Blend weight</span><span class="v bad">0.000</span><span class="n">on the model, 5 seasons</span></div><div class="stat"><span class="k">Moneyline ROI</span><span class="v bad">-7.4%</span><span class="n">walk-forward 2018-2025</span></div><div class="stat"><span class="k">Spread AUC</span><span class="v bad">0.502</span><span class="n">a coin flip</span></div><div class="stat"><span class="k">Props log loss</span><span class="v bad">0.7197</span><span class="n">vs market 0.6875</span></div></div><p class="prose">These are the output of a team-strength and player projection model built to a published method, and then actually backtested. The headline is that it <b>does not beat the closing line</b>. Fitting <b>p = w&middot;model + (1&minus;w)&middot;market</b> out of sample returns <b>w = 0</b> in every season since 2021 &mdash; the price already contains what the model knows.</p><p class="prose">The boards are published anyway, because the measurement is the interesting part and because the prices themselves are useful. Rows are ordered by strength of evidence, which means the model&rsquo;s most confident picks sort <b>last</b>: ROI fell to &minus;16.7% in the 10&ndash;20% claimed-edge band.</p><div class="stats" style="margin-top:4px"><a class="stat" style="text-decoration:none" href="line.html"><span class="k">Board</span><span class="v">Line board</span><span class="n">Moneyline, spread and total &middot; 48 calls across 16 games</span></a><a class="stat" style="text-decoration:none" href="props.html"><span class="k">Board</span><span class="v">Prop board</span><span class="n">562 player props with last-5, last-10 and last-20 hit rates</span></a></div></section><footer>Prices captured from a paid odds feed on 2026-09-01 and will have moved. Model figures are walk-forward and out of sample. Nothing here is betting advice &mdash; the measured record of these picks is negative and is printed above precisely so it cannot be skipped. If gambling stops being entertainment, call 1-800-GAMBLER.</footer></div>
+<div class="wrap"><header><div class="eyebrow">NFL 2026 &middot; Week 1</div><h1>NFL Week 1 Boards</h1><div class="sub">Generated 02 Sep 2026, 17:46 UTC</div></header><section class="verdict"><h2>Two boards, and one finding that applies to both</h2><div class="stats"><div class="stat"><span class="k">Blend weight</span><span class="v bad">0.000</span><span class="n">on the model, 5 seasons</span></div><div class="stat"><span class="k">Moneyline ROI</span><span class="v bad">-7.4%</span><span class="n">walk-forward 2018-2025</span></div><div class="stat"><span class="k">Spread AUC</span><span class="v bad">0.502</span><span class="n">a coin flip</span></div><div class="stat"><span class="k">Props log loss</span><span class="v bad">0.7197</span><span class="n">vs market 0.6875</span></div></div><p class="prose">These are the output of a team-strength and player projection model built to a published method, and then actually backtested. The headline is that it <b>does not beat the closing line</b>. Fitting <b>p = w&middot;model + (1&minus;w)&middot;market</b> out of sample returns <b>w = 0</b> in every season since 2021 &mdash; the price already contains what the model knows.</p><p class="prose">The boards are published anyway, because the measurement is the interesting part and because the prices themselves are useful. Rows are ordered by strength of evidence, which means the model&rsquo;s most confident picks sort <b>last</b>: ROI fell to &minus;16.7% in the 10&ndash;20% claimed-edge band.</p><div class="stats" style="margin-top:4px"><a class="stat" style="text-decoration:none" href="line.html"><span class="k">Board</span><span class="v">Line board</span><span class="n">Moneyline, spread and total &middot; 48 calls across 16 games</span></a><a class="stat" style="text-decoration:none" href="props.html"><span class="k">Board</span><span class="v">Prop board</span><span class="n">562 player props with last-5, last-10 and last-20 hit rates</span></a></div></section><footer>Prices captured from a paid odds feed on 2026-09-01 and will have moved. Model figures are walk-forward and out of sample. Nothing here is betting advice &mdash; the measured record of these picks is negative and is printed above precisely so it cannot be skipped. If gambling stops being entertainment, call 1-800-GAMBLER.</footer></div>
 </body>
 </html>
